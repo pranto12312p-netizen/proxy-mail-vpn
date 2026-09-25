@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050606">
+<meta name="description" content="PROXY MAIL VPN — Premium Digital Network">
 <title>PROXY MAIL VPN — Premium Digital Network</title>
 
 <style>
@@ -17,7 +19,7 @@
 html{
     scroll-behavior:smooth;
 }
-  
+
 body{
     font-family:Inter,Arial,sans-serif;
     background:#050606;
@@ -47,6 +49,87 @@ body:after{
     background-size:60px 60px;
     pointer-events:none;
     z-index:-2;
+}
+
+/* ================= LOADER ================= */
+
+#loader{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:#050606;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:opacity .7s ease,visibility .7s ease;
+}
+
+#loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loaderOrb{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(0,255,157,.45);
+    background:
+        radial-gradient(circle,#00ff9d25,#06130e 65%);
+    box-shadow:
+        0 0 35px rgba(0,255,157,.15),
+        0 0 80px rgba(0,255,157,.08);
+    animation:loaderPulse 1.5s ease-in-out infinite;
+}
+
+.loaderOrb:before{
+    content:"";
+    position:absolute;
+    width:135px;
+    height:135px;
+    border:1px dashed rgba(0,255,157,.18);
+    border-radius:50%;
+    animation:loaderSpin 5s linear infinite;
+}
+
+.loaderOrb span{
+    color:#00ff9d;
+    font-size:19px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.loaderText{
+    margin-top:26px;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.loaderSub{
+    margin-top:10px;
+    color:#66716c;
+    font-size:8px;
+    letter-spacing:2px;
+}
+
+@keyframes loaderPulse{
+    0%,100%{
+        transform:scale(1);
+        opacity:.75;
+    }
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+}
+
+@keyframes loaderSpin{
+    from{transform:rotate(0)}
+    to{transform:rotate(360deg)}
 }
 
 /* ================= NAV ================= */
@@ -134,6 +217,18 @@ body:after{
     width:56%;
     position:relative;
     z-index:5;
+    animation:heroIn 1s ease .3s both;
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .eyebrow{
@@ -157,6 +252,11 @@ body:after{
     border-radius:50%;
     background:#00ff9d;
     box-shadow:0 0 12px #00ff9d;
+    animation:blink 1.4s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.35}
 }
 
 .hero h1{
@@ -164,7 +264,6 @@ body:after{
     line-height:.87;
     letter-spacing:-6px;
     font-weight:900;
-    max-width:850px;
 }
 
 .hero h1 span{
@@ -184,8 +283,6 @@ body:after{
     font-size:15px;
     line-height:1.8;
 }
-
-/* ===== CREATOR SIGNATURE ===== */
 
 .creator{
     display:flex;
@@ -262,6 +359,18 @@ body:after{
     height:570px;
     display:grid;
     place-items:center;
+    animation:visualIn 1.4s ease .5s both;
+}
+
+@keyframes visualIn{
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 .orbGlow{
@@ -316,6 +425,11 @@ body:after{
     box-shadow:
         0 0 60px rgba(0,255,157,.2),
         inset 0 0 50px rgba(0,255,157,.15);
+    animation:coreFloat 4s ease-in-out infinite;
+}
+
+@keyframes coreFloat{
+    50%{transform:translateY(-8px)}
 }
 
 .core:before{
@@ -350,6 +464,11 @@ body:after{
     border-radius:50%;
     background:#00ff9d;
     box-shadow:0 0 25px #00ff9d;
+    animation:signalPulse 2s infinite;
+}
+
+@keyframes signalPulse{
+    50%{transform:scale(1.6);opacity:.5}
 }
 
 .s1{top:18%;right:23%}
@@ -449,11 +568,28 @@ body:after{
     min-height:390px;
     border:1px solid rgba(255,255,255,.08);
     border-radius:28px;
-    background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
     padding:30px;
     position:relative;
     overflow:hidden;
     transition:.4s;
+}
+
+.service:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:#00ff9d;
+    filter:blur(100px);
+    opacity:0;
+    transition:.4s;
+}
+
+.service:hover:before{
+    opacity:.07;
 }
 
 .service:hover{
@@ -607,6 +743,12 @@ body:after{
     flex-direction:column;
     justify-content:space-between;
     min-height:187px;
+    transition:.3s;
+}
+
+.mini:hover{
+    transform:translateY(-5px);
+    border-color:rgba(0,255,157,.22);
 }
 
 .mini small{
@@ -696,6 +838,12 @@ body:after{
     height:500px;
     border:1px solid rgba(0,255,157,.08);
     border-radius:50%;
+    animation:ctaRotate 18s linear infinite;
+}
+
+@keyframes ctaRotate{
+    from{transform:rotate(0)}
+    to{transform:rotate(360deg)}
 }
 
 .cta h2{
@@ -934,14 +1082,35 @@ footer p{
     .creator{
         margin-top:21px;
     }
+
+    .loaderOrb{
+        width:95px;
+        height:95px;
+    }
+
+    .loaderText{
+        font-size:10px;
+    }
+
+    .loaderSub{
+        font-size:7px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- PREMIUM LOADER -->
+<div id="loader">
+    <div class="loaderOrb">
+        <span>PMV</span>
+    </div>
+    <div class="loaderText">PROXY MAIL VPN</div>
+    <div class="loaderSub">INITIALIZING DIGITAL NETWORK...</div>
+</div>
 
+<!-- NAVIGATION -->
 <nav class="nav">
 
     <div class="logo">
@@ -957,15 +1126,14 @@ footer p{
 
     <a class="navBtn"
        href="https://t.me/bdearnjone_80"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
         ENTER HUB ↗
     </a>
 
 </nav>
 
-
-<!-- ================= HERO ================= -->
-
+<!-- HERO -->
 <section class="hero">
 
     <div class="heroLeft">
@@ -987,25 +1155,21 @@ footer p{
             designed for a faster, cleaner and smarter experience.
         </p>
 
-
-        <!-- YOUR NAME -->
         <div class="creator">
-
             <div class="creatorLine"></div>
 
             <div class="creatorText">
                 A DIGITAL NETWORK BY
                 <strong>PRANTO AHMED</strong>
             </div>
-
         </div>
-
 
         <div class="heroActions">
 
             <a class="primary"
                href="https://t.me/bdearnjone_80"
-               target="_blank">
+               target="_blank"
+               rel="noopener">
                 EXPLORE THE HUB ↗
             </a>
 
@@ -1018,9 +1182,7 @@ footer p{
 
     </div>
 
-
-    <!-- ================= ORBIT ================= -->
-
+    <!-- ORBIT SYSTEM -->
     <div class="heroVisual">
 
         <div class="orbGlow"></div>
@@ -1046,9 +1208,7 @@ footer p{
 
 </section>
 
-
-<!-- ================= TICKER ================= -->
-
+<!-- TICKER -->
 <div class="ticker">
 
     <div class="tickerTrack">
@@ -1071,9 +1231,7 @@ footer p{
 
 </div>
 
-
-<!-- ================= SERVICES ================= -->
-
+<!-- SERVICES -->
 <section class="section" id="services">
 
     <div class="sectionTop">
@@ -1089,7 +1247,6 @@ footer p{
         </p>
 
     </div>
-
 
     <div class="serviceGrid">
 
@@ -1110,7 +1267,6 @@ footer p{
 
         </div>
 
-
         <div class="service">
 
             <div class="number">02</div>
@@ -1127,7 +1283,6 @@ footer p{
             <div class="arrow">↗</div>
 
         </div>
-
 
         <div class="service">
 
@@ -1150,9 +1305,7 @@ footer p{
 
 </section>
 
-
-<!-- ================= NETWORK ================= -->
-
+<!-- NETWORK -->
 <section class="section" id="network">
 
     <div class="sectionTop">
@@ -1168,7 +1321,6 @@ footer p{
         </p>
 
     </div>
-
 
     <div class="network">
 
@@ -1210,7 +1362,6 @@ footer p{
 
         </div>
 
-
         <div class="miniGrid">
 
             <div class="mini">
@@ -1243,9 +1394,7 @@ footer p{
 
 </section>
 
-
-<!-- ================= ABOUT ================= -->
-
+<!-- ABOUT -->
 <section class="section" id="about">
 
     <div class="sectionTop">
@@ -1262,7 +1411,6 @@ footer p{
         </p>
 
     </div>
-
 
     <div class="aboutBox">
 
@@ -1285,9 +1433,7 @@ footer p{
 
 </section>
 
-
-<!-- ================= CTA ================= -->
-
+<!-- CTA -->
 <section class="cta">
 
     <div class="kicker">READY WHEN YOU ARE</div>
@@ -1303,15 +1449,14 @@ footer p{
 
     <a class="primary"
        href="https://t.me/bdearnjone_80"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
         JOIN THE COMMUNITY ↗
     </a>
 
 </section>
 
-
-<!-- ================= FOOTER ================= -->
-
+<!-- FOOTER -->
 <footer>
 
     <div class="footerLogo">
@@ -1328,11 +1473,31 @@ footer p{
 
     <a class="secondary"
        href="https://t.me/Prantoearninglab"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
         SUPPORT ↗
     </a>
 
 </footer>
+
+<script>
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+        const loader=document.getElementById("loader");
+
+        if(loader){
+            loader.classList.add("hide");
+
+            setTimeout(function(){
+                loader.remove();
+            },800);
+        }
+
+    },1200);
+
+});
+</script>
 
 </body>
 </html>
